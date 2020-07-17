@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import Container from '@material-ui/core/Container';
 
-import { SearchFilter } from './components/SearchFilter.component';
-import { CustomizedTable } from './components/CustomizedTable.component';
+import { Loading } from '../../components/Loading/Loading.component';
+import { SearchFilter } from '../../components/SearchFilter/SearchFilter.component';
+import { CustomizedTable } from '../../components/CustomizedTable/CustomizedTable.component';
 import './App.css';
+
+const loadingMessage = "Por favor aguarde...";
 
 function createData(name, code, population, size) {
   const density = population / size;
@@ -47,10 +50,14 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      data: rows,
+      data: [],
       searchfield: '',
       clickedCoin: ''
     }
+  }
+
+  componentDidMount() {
+    setTimeout(() => this.setState({data: rows}), 2000);
   }
 
   onSearchChange = (event) => {
@@ -63,13 +70,18 @@ class App extends Component {
       } 
     );
 
-    return (
-      <Container maxWidth="lg">
-        <h1>SmarttBot Challenge</h1>
-        <SearchFilter searchChange={this.onSearchChange}/>
-        <CustomizedTable rows={filteredData} />
-      </Container>
-    );
+    if (!this.state.data.length) {
+      return (
+        <Loading message={loadingMessage}/>
+    )} else {
+      return (
+        <Container maxWidth="lg">
+          <h1>Desafio SmarttBot</h1>
+          <SearchFilter searchChange={this.onSearchChange}/>
+          <CustomizedTable rows={filteredData} />
+        </Container>
+      );
+    }
   }
 }
 

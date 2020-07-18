@@ -5,10 +5,8 @@ export const getSummary = async () => {
     URL_CONSTANTS.BASE_URL + URL_CONSTANTS.RETURN_TICKER
   )
     .then((response) => response.json())
-    .then((data) => {
-      return data;
-    });
-
+    .then((data) => { return data })
+    // .catch(error => window.alert("Unable to fetch data from our server. Please try again later!"))
   return setPairInfo(retrievedSummary);
 };
 
@@ -24,7 +22,7 @@ const setPairInfo = (summary) => {
   Object.values(summary).forEach((pair, id) => {
     const value = {
       ...pair,
-      pairName: Object.keys(summary)[id].replace("_", "/")
+      pairName: Object.keys(summary)[id]
     };
     pairData.push(value);
   });

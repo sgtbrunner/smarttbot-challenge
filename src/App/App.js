@@ -15,9 +15,16 @@ class App extends Component {
     };
   }
 
-  async componentDidMount() {
-    this.setState({ pairs: await getSummary() });
+  componentDidMount() {
+    this.loadPairsData();
+    setInterval(() => { this.loadPairsData() }, 60000);
     // getCurrencies();
+  }
+
+  async loadPairsData() {
+    console.log('load starts');
+    this.setState({ pairs: await getSummary() });
+    console.log('load ends');
   }
 
   onSearchChange = (event) => {

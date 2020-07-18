@@ -8,56 +8,55 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
+import TableSortLabel from "@material-ui/core/TableSortLabel";
 
 const columns = [
   { id: "id", label: "Code", minWidth: 50 },
-  { id: "pairName", label: "Name", minWidth: 100 },
+  { 
+    id: "pairName", 
+    label: "Name", 
+    minWidth: 50,
+    format: (value) => value.replace('_','/')
+  },
   {
     id: "last",
-    label: "Last",
-    minWidth: 100,
-    format: (value) => Number(value).toFixed(2),
-  },
-  {
-    id: "lowestAsk",
-    label: "Lowest Ask",
-    minWidth: 100,
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "highestBid",
-    label: "Highest Bid",
-    minWidth: 100,
-    format: (value) => value.toLocaleString("en-US"),
+    label: "Value",
+    minWidth: 50,
+    format: (value) =>
+      Number(value) > 1
+        ? Number(value).toLocaleString('pt-BR')
+        : Number(value).toFixed(6).replace(".", ",")
   },
   {
     id: "percentChange",
-    label: "% Change",
-    minWidth: 100,
-    format: (value) => value.toLocaleString("en-US").toFixed(2) + '%'
+    label: "Change",
+    minWidth: 50,
+    format: (value) => (Number(value) * 100).toFixed(2) + "%"
   },
   {
     id: "baseVolume",
     label: "Base Volume",
-    minWidth: 100,
-    format: (value) => value.toLocaleString("en-US"),
+    minWidth: 50,
+    format: (value) => Number(value).toLocaleString('pt-BR')
   },
   {
     id: "quoteVolume",
     label: "Quote Volume",
-    minWidth: 100,
-    format: (value) => value.toLocaleString("en-US"),
+    minWidth: 50,
+    format: (value) => Number(value).toLocaleString('pt-BR')
+  },
+  {
+    id: "isFrozen",
+    label: "Active",
+    minWidth: 50,
+    format: (value) => value === '0' ? 'Yes' : 'No'
   }
 ];
 
 const useStyles = makeStyles({
   root: {
     width: "100%",
-  },
-  container: {
-    minHeight: 300,
-    maxHeight: 600,
-  },
+  }
 });
 
 export const CustomizedTable = (props) => {
@@ -74,6 +73,8 @@ export const CustomizedTable = (props) => {
     setPage(0);
   };
 
+  const createSortHandler = () => {}
+
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -86,7 +87,18 @@ export const CustomizedTable = (props) => {
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
-                  {column.label}
+                  <TableSortLabel
+                  active={props.orderBy === column.id}
+                  direction={props.orderBy === column.id ? props.order : 'asc'}
+                  onClick={createSortHandler(column.id)}
+                    >
+                      {column.label}
+                      {props.orderBy === column.id ? (
+                        <span className={classes.visuallyHidden}>
+                          {props.order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                        </span>
+                      ) : null}
+                    </TableSortLabel>
                 </TableCell>
               ))}
             </TableRow>
@@ -101,9 +113,7 @@ export const CustomizedTable = (props) => {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
+                          {column.format ? column.format(value) : value}
                         </TableCell>
                       );
                     })}
@@ -114,13 +124,14 @@ export const CustomizedTable = (props) => {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25, 100]}
+        rowsPerPageOptions={[10, 25, 50, 100]}
         component="div"
         count={props.rows.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
+        hidden={props.rows.length < 10}
       />
     </Paper>
   );

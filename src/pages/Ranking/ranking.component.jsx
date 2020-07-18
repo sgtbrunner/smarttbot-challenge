@@ -5,10 +5,10 @@ import { CustomizedTable } from '../../components/CustomizedTable/CustomizedTabl
 import './ranking.styles.css';
 
 export const Ranking = (props) => {
-    console.log(props);
     return (
         <div className="ranking-container">
             <h1>Desafio SmarttBot</h1>
+            <h4>* Updated every 30s</h4>
             <SearchFilter searchChange={props.onSearchChange}/>
             <CustomizedTable rows={props.rows} />
         </div>

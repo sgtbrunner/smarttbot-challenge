@@ -9,34 +9,32 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      coins: [],
-      searchfield: "",
-      clickedCoin: "",
+      pairs: [],
+      searchfield: '',
+      clickedCoin: '',
     };
   }
 
   async componentDidMount() {
-    this.setState({ coins: await getSummary() });
+    this.setState({ pairs: await getSummary() });
     // getCurrencies();
   }
 
   onSearchChange = (event) => {
-    this.setState({ searchfield: event.target.value }, () =>
-      console.log(this.state.searchfield)
-    );
+    this.setState({ searchfield: event.target.value });
   };
 
   render() {
-    // const filteredData = this.state.coins.filter(entry => {
-    //     return entry.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
-    //   }
-    // );
+    const filteredData = this.state.pairs.filter((pair) => {
+        return pair.pairName.toLowerCase().includes(this.state.searchfield.toLowerCase());
+      }
+    );
 
-    if (!this.state.coins.length) {
+    if (!this.state.pairs.length) {
       return <Loading />;
     } else {
       return (
-        <Ranking onSearchChange={this.onSearchChange} rows={this.state.coins} />
+        <Ranking onSearchChange={this.onSearchChange} rows={filteredData} />
       );
     }
   }

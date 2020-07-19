@@ -1,1 +1,1 @@
-export const LOADING_MESSAGE = "Por favor aguarde...";
+export const LOADING_MESSAGE = "Please wait while data loads...";

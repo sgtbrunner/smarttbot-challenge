@@ -8,7 +8,7 @@ export const SearchFilter = props => {
 				<input
 					className="custom-input"
 					type="search" 
-					placeholder="busque aqui a criptomoeda desejada..."
+					placeholder="search criptocurrency pairs here..."
 					onChange={props.searchChange}
 				/>
 			</div>

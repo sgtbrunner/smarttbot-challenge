@@ -5,12 +5,14 @@ import { CustomizedTable } from '../../components/CustomizedTable/CustomizedTabl
 import './ranking.styles.css';
 
 export const Ranking = (props) => {
+    const { onSearchChange, rows, updatedAt } = props;
     return (
         <div className="ranking-container">
             <h1>SmarttBot Challenge</h1>
-            <h4>* Updates occur every 60s *</h4>
-            <SearchFilter searchChange={props.onSearchChange}/>
-            <CustomizedTable rows={props.rows} />
+            <h3>Most Active Cryptocurrency Pairs in the last 24h</h3>
+            <SearchFilter searchChange={onSearchChange}/>
+            <CustomizedTable rows={rows} />
+            <h5>Last updated at: { updatedAt }</h5>
         </div>
     )
 }

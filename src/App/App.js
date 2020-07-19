@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import { Ranking } from "../pages/Ranking/ranking.component";
 import { Loading } from "../components/Loading/Loading.component";
-import { getSummary, getCurrencies } from "../utils/dataService.util";
+import { getSummary } from "../utils/dataService.util";
+import { getCurrentDateTime } from "../utils/dateTime.util";
 import "./App.css";
 
 class App extends Component {
@@ -11,20 +12,17 @@ class App extends Component {
     this.state = {
       pairs: [],
       searchfield: '',
-      clickedCoin: '',
+      lastUpdate: '',
     };
   }
 
   componentDidMount() {
-    this.loadPairsData();
-    setInterval(() => { this.loadPairsData() }, 60000);
-    // getCurrencies();
+    this.loadSummary();
+    setInterval(() => { this.loadSummary() }, 60000);
   }
 
-  async loadPairsData() {
-    console.log('load starts');
-    this.setState({ pairs: await getSummary() });
-    console.log('load ends');
+  async loadSummary() {
+    this.setState({ pairs: await getSummary(), lastUpdate: getCurrentDateTime() });
   }
 
   onSearchChange = (event) => {
@@ -33,7 +31,8 @@ class App extends Component {
 
   render() {
     const filteredData = this.state.pairs.filter((pair) => {
-        return pair.pairName.toLowerCase().includes(this.state.searchfield.toLowerCase());
+        return ( pair.pairCode.toLowerCase().includes(this.state.searchfield.toLowerCase()) 
+          || pair.currencies.toLowerCase().includes(this.state.searchfield.toLowerCase()));
       }
     );
 
@@ -41,7 +40,11 @@ class App extends Component {
       return <Loading />;
     } else {
       return (
-        <Ranking onSearchChange={this.onSearchChange} rows={filteredData} />
+        <Ranking 
+          rows={filteredData} 
+          updatedAt={this.state.lastUpdate} 
+          onSearchChange={this.onSearchChange} 
+        />
       );
     }
   }

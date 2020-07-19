@@ -11,17 +11,34 @@ import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 
 const columns = [
-  { id: "id", label: "Code", minWidth: 50 },
   { 
-    id: "pairName", 
-    label: "Name", 
-    minWidth: 50,
+    id: "pairCode", 
+    label: "Pair", 
     format: (value) => value.replace('_','/')
+  },
+  { 
+    id: "currencies", 
+    label: "Currencies", 
   },
   {
     id: "last",
-    label: "Value",
-    minWidth: 50,
+    label: "Last",
+    format: (value) =>
+      Number(value) > 1
+        ? Number(value).toLocaleString('pt-BR')
+        : Number(value).toFixed(6).replace(".", ",")
+  },
+  {
+    id: "high24hr",
+    label: "High",
+    format: (value) =>
+      Number(value) > 1
+        ? Number(value).toLocaleString('pt-BR')
+        : Number(value).toFixed(6).replace(".", ",")
+  },
+  {
+    id: "low24hr",
+    label: "Low",
     format: (value) =>
       Number(value) > 1
         ? Number(value).toLocaleString('pt-BR')
@@ -29,29 +46,28 @@ const columns = [
   },
   {
     id: "percentChange",
-    label: "Change",
-    minWidth: 50,
+    label: "Change %",
     format: (value) => (Number(value) * 100).toFixed(2) + "%"
   },
   {
     id: "baseVolume",
-    label: "Base Volume",
-    minWidth: 50,
-    format: (value) => Number(value).toLocaleString('pt-BR')
+    label: "Base Vol",
+    format: (value) => abbreviateNumber(Number(value))
   },
   {
     id: "quoteVolume",
-    label: "Quote Volume",
-    minWidth: 50,
-    format: (value) => Number(value).toLocaleString('pt-BR')
+    label: "Quote Vol",
+    format: (value) => abbreviateNumber(Number(value))
   },
-  {
-    id: "isFrozen",
-    label: "Active",
-    minWidth: 50,
-    format: (value) => value === '0' ? 'Yes' : 'No'
-  }
 ];
+
+const abbreviateNumber = n => {
+  if (n < 1e3) return n.toFixed(2);
+  if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
+  if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
+  if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
+  if (n >= 1e12) return +(n / 1e12).toFixed(1) + "T";
+}
 
 const useStyles = makeStyles({
   root: {

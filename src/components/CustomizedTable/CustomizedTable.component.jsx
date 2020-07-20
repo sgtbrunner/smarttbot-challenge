@@ -11,68 +11,65 @@ import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 
 const columns = [
-  { 
-    id: "pairCode", 
-    label: "Pair", 
-    format: (value) => value.replace('_','/')
+  {
+    id: "pairCode",
+    label: "Pair",
+    format: (value) => value.replace("_", "/"),
   },
-  { 
-    id: "currencies", 
-    label: "Currencies", 
-  },
+  { id: "currencies", label: "Currencies" },
   {
     id: "last",
     label: "Last",
     format: (value) =>
       Number(value) > 1
-        ? Number(value).toLocaleString('pt-BR')
-        : Number(value).toFixed(6).replace(".", ",")
+        ? Number(value).toLocaleString("pt-BR")
+        : Number(value).toFixed(6).replace(".", ","),
   },
   {
     id: "high24hr",
     label: "High",
     format: (value) =>
       Number(value) > 1
-        ? Number(value).toLocaleString('pt-BR')
-        : Number(value).toFixed(6).replace(".", ",")
+        ? Number(value).toLocaleString("pt-BR")
+        : Number(value).toFixed(6).replace(".", ","),
   },
   {
     id: "low24hr",
     label: "Low",
     format: (value) =>
       Number(value) > 1
-        ? Number(value).toLocaleString('pt-BR')
-        : Number(value).toFixed(6).replace(".", ",")
+        ? Number(value).toLocaleString("pt-BR")
+        : Number(value).toFixed(6).replace(".", ","),
   },
   {
     id: "percentChange",
     label: "Change %",
-    format: (value) => (Number(value) * 100).toFixed(2) + "%"
+    format: (value) => (Number(value) * 100).toFixed(2).replace(".", ",") + "%",
   },
   {
     id: "baseVolume",
     label: "Base Vol",
-    format: (value) => abbreviateNumber(Number(value))
+    format: (value) => abbreviateNumber(Number(value)),
   },
   {
     id: "quoteVolume",
     label: "Quote Vol",
-    format: (value) => abbreviateNumber(Number(value))
+    format: (value) => abbreviateNumber(Number(value)),
   },
 ];
 
-const abbreviateNumber = n => {
-  if (n < 1e3) return n.toFixed(2);
+const abbreviateNumber = (n) => {
+  if (n < 1e3) return n.toLocaleString("pt-BR");
   if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
   if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
   if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
   if (n >= 1e12) return +(n / 1e12).toFixed(1) + "T";
-}
+};
 
 const useStyles = makeStyles({
   root: {
     width: "100%",
-  }
+  },
 });
 
 export const CustomizedTable = (props) => {
@@ -89,7 +86,7 @@ export const CustomizedTable = (props) => {
     setPage(0);
   };
 
-  const createSortHandler = () => {}
+  const createSortHandler = () => {};
 
   return (
     <Paper className={classes.root}>
@@ -104,17 +101,21 @@ export const CustomizedTable = (props) => {
                   style={{ minWidth: column.minWidth }}
                 >
                   <TableSortLabel
-                  active={props.orderBy === column.id}
-                  direction={props.orderBy === column.id ? props.order : 'asc'}
-                  onClick={createSortHandler(column.id)}
-                    >
-                      {column.label}
-                      {props.orderBy === column.id ? (
-                        <span className={classes.visuallyHidden}>
-                          {props.order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                        </span>
-                      ) : null}
-                    </TableSortLabel>
+                    active={props.orderBy === column.id}
+                    direction={
+                      props.orderBy === column.id ? props.order : "asc"
+                    }
+                    onClick={createSortHandler(column.id)}
+                  >
+                    {column.label}
+                    {props.orderBy === column.id ? (
+                      <span className={classes.visuallyHidden}>
+                        {props.order === "desc"
+                          ? "sorted descending"
+                          : "sorted ascending"}
+                      </span>
+                    ) : null}
+                  </TableSortLabel>
                 </TableCell>
               ))}
             </TableRow>

@@ -12,7 +12,7 @@ export const Ranking = (props) => {
             <h3>Most Active Cryptocurrency Pairs in the last 24h</h3>
             <SearchFilter searchChange={onSearchChange}/>
             <CustomizedTable rows={rows} />
-            <h5>Atualizado hoje às { updatedAt }</h5>
+            <h5>Last updated: today at { updatedAt }</h5>
         </div>
     )
 }

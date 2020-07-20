@@ -1,8 +1,9 @@
 import { URL_CONSTANTS } from "../constants/url.constants";
 
 export const getSummary = async () => {
-  const ticker = await returnTicker();
-  const currencies = await returnCurrencies();
+  // const ticker = await returnTicker();
+  // const currencies = await returnCurrencies();
+  const [ticker, currencies] = await Promise.all([returnTicker(), returnCurrencies()]);
   return setSummaryData(ticker, currencies);
 };
 

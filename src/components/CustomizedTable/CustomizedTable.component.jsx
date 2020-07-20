@@ -20,26 +20,17 @@ const columns = [
   {
     id: "last",
     label: "Last",
-    format: (value) =>
-      Number(value) > 1
-        ? Number(value).toLocaleString("pt-BR")
-        : Number(value).toFixed(6).replace(".", ","),
+    format: (value) => numericValueFormatter(value)
   },
   {
     id: "high24hr",
     label: "High",
-    format: (value) =>
-      Number(value) > 1
-        ? Number(value).toLocaleString("pt-BR")
-        : Number(value).toFixed(6).replace(".", ","),
+    format: (value) => numericValueFormatter(value)
   },
   {
     id: "low24hr",
     label: "Low",
-    format: (value) =>
-      Number(value) > 1
-        ? Number(value).toLocaleString("pt-BR")
-        : Number(value).toFixed(6).replace(".", ","),
+    format: (value) => numericValueFormatter(value)
   },
   {
     id: "percentChange",
@@ -49,21 +40,27 @@ const columns = [
   {
     id: "baseVolume",
     label: "Base Vol",
-    format: (value) => abbreviateNumber(Number(value)),
+    format: (value) => abbreviateNumber(Number(value)).replace(".", ","),
   },
   {
     id: "quoteVolume",
     label: "Quote Vol",
-    format: (value) => abbreviateNumber(Number(value)),
+    format: (value) => abbreviateNumber(Number(value)).replace(".", ","),
   },
 ];
 
+const numericValueFormatter = value => {
+  return Number(value) > 1
+  ? Number(value).toLocaleString("pt-BR")
+  : Number(value).toFixed(6).replace(".", ",")
+}
+
 const abbreviateNumber = (n) => {
   if (n < 1e3) return n.toLocaleString("pt-BR");
-  if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
-  if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
-  if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
-  if (n >= 1e12) return +(n / 1e12).toFixed(1) + "T";
+  if (n >= 1e3 && n < 1e6) return ((n / 1e3).toFixed(1) + "K");
+  if (n >= 1e6 && n < 1e9) return ((n / 1e6).toFixed(1) + "M");
+  if (n >= 1e9 && n < 1e12) return ((n / 1e9).toFixed(1) + "B");
+  if (n >= 1e12) return ((n / 1e12).toFixed(1) + "T");
 };
 
 const useStyles = makeStyles({

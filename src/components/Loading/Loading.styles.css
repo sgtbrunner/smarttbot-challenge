@@ -1,44 +1,24 @@
-.loading-page {
-    max-width: 100%;
-    max-height: 100vh;
-    height: 100%;
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.page-loader {
+.loading-spinner {
+    padding: 40px;
+    margin-top: 100px;
+    width: 60px !important;
+    height: 60px !important;
+    color: #1BA39C !important;
+}
+
+.loading-message {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 36px;
+    padding: 40px;
     text-align: center;
-    vertical-align: center;
-    font-family: 'Roboto';
-    font-size: 10vh;
-    padding: 25vh 10vh;
-}
-
-.animate-flicker {
-    -webkit-animation: flickerAnimation 1s infinite;
-    -moz-animation: flickerAnimation 1s infinite;
-    -o-animation: flickerAnimation 1s infinite;
-     animation: flickerAnimation 1s infinite;
- }
-
-@keyframes flickerAnimation {
-    0%   { opacity:1; }
-    50%  { opacity:0; }
-    100% { opacity:1; }
-}
-
-@-o-keyframes flickerAnimation{
-    0%   { opacity:1; }
-    50%  { opacity:0; }
-    100% { opacity:1; }
-}
-
-@-moz-keyframes flickerAnimation{
-    0%   { opacity:1; }
-    50%  { opacity:0; }
-    100% { opacity:1; }
-}
-
-@-webkit-keyframes flickerAnimation{
-    0%   { opacity:1; }
-    50%  { opacity:0; }
-    100% { opacity:1; }
+    color: #1BA39C;
 }

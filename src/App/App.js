@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import { Header } from "../components/Header/Header.component";
 import { Ranking } from "../pages/Ranking/ranking.component";
 import { Loading } from "../components/Loading/Loading.component";
 import { getSummary } from "../utils/dataService.util";
@@ -36,17 +37,20 @@ class App extends Component {
       }
     );
 
-    if (!this.state.pairs.length) {
-      return <Loading />;
-    } else {
-      return (
-        <Ranking 
-          rows={filteredData} 
-          updatedAt={this.state.lastUpdate} 
-          onSearchChange={this.onSearchChange} 
-        />
-      );
-    }
+    return (
+      <div className="App">
+        <Header />
+        { !this.state.pairs.length ?
+            <Loading />
+          :
+            <Ranking 
+              rows={filteredData} 
+              updatedAt={this.state.lastUpdate} 
+              onSearchChange={this.onSearchChange} 
+            />
+        }
+      </div>
+    )
   }
 }
 

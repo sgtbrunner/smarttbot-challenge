@@ -1,1 +1,0 @@
-export const LOADING_MESSAGE = "Please wait while data loads...";

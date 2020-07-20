@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { LOADING_MESSAGE } from '../../constants/app.constants';
-import './Loading.styles.css';
+import "./Loading.styles.css";
 
 export const Loading = () => {
-    return (
-        <div className="loading-page">
-            <div className ="page-loader animate-flicker">{LOADING_MESSAGE}</div>
-        </div>      
-    );
-}
+  return (
+    <div className="loading-page">
+      <div className="page-loader animate-flicker">
+        Wait while we load the best results for you
+      </div>
+    </div>
+  );
+};

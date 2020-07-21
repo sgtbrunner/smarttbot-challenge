@@ -8,7 +8,7 @@ export const LiveUpdate = (props) => {
     return (
         <div className="live-update">
             <QueryBuilderIcon color="primary"/>
-            <div className="live-text">Last updated: Today, { updatedAt }</div>
+            <div className="live-text">Last updated: { updatedAt }</div>
         </div>
     )
 }

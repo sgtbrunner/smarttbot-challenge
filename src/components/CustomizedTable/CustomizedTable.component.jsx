@@ -69,11 +69,10 @@ export const CustomizedTable = (props) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const setColorClass = ( id, value ) => {
-    if(id === "percentChange") {
-      return value > 0 ? "positive" : "negative" 
-    }
-   };
+  const setStyles = (id, value) => {
+    if(id === "rank") return "bold-rank";
+    if(id === "percentChange") return value > 0 ? "positive" : "negative";
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -96,7 +95,7 @@ export const CustomizedTable = (props) => {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{ minWidth: column.minWidth, fontWeight: "bold" }}
                 >
                   <TableSortLabel
                     active={props.orderBy === column.id}
@@ -134,7 +133,7 @@ export const CustomizedTable = (props) => {
                         <TableCell 
                           key={column.id} 
                           align={column.align} 
-                          className={setColorClass(column.id, value)}>
+                          className={setStyles(column.id, value)}>
                           {column.format ? column.format(value) : value}
                         </TableCell>
                       );

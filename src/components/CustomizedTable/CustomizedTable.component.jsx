@@ -10,12 +10,11 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 
+import "./CustomizedTable.styles.css";
+
 const columns = [
-  {
-    id: "pairCode",
-    label: "Pair",
-    format: (value) => value.replace("_", "/"),
-  },
+  { id: "rank", label: "Rank" },
+  { id: "pairCode", label: "Pair" },
   { id: "currencies", label: "Currencies" },
   {
     id: "last",
@@ -35,18 +34,13 @@ const columns = [
   {
     id: "percentChange",
     label: "Change %",
-    format: (value) => (Number(value) * 100).toFixed(2).replace(".", ",") + "%",
+    format: (value) => (Number(value) * 100).toFixed(2).replace(".", ",") + "%"
   },
   {
-    id: "baseVolume",
-    label: "Base Vol",
+    id: "totalVolume",
+    label: "Volume",
     format: (value) => abbreviateNumber(Number(value)).replace(".", ","),
-  },
-  {
-    id: "quoteVolume",
-    label: "Quote Vol",
-    format: (value) => abbreviateNumber(Number(value)).replace(".", ","),
-  },
+  }
 ];
 
 const numericValueFormatter = value => {
@@ -74,6 +68,12 @@ export const CustomizedTable = (props) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const setColorClass = ( id, value ) => {
+    if(id === "percentChange") {
+      return value > 0 ? "positive" : "negative" 
+    }
+   };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -121,13 +121,20 @@ export const CustomizedTable = (props) => {
           <TableBody>
             {props.rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                  <TableRow 
+                    key={row.id}
+                    tabIndex={-1} 
+                    role="checkbox"
+                    style ={ index % 2? { background : "#EEEEEE" }:{ background : "#FFFFFF" }}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell 
+                          key={column.id} 
+                          align={column.align} 
+                          className={setColorClass(column.id, value)}>
                           {column.format ? column.format(value) : value}
                         </TableCell>
                       );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Header } from "../components/Header/Header.component";
-import { Ranking } from "../pages/Ranking/ranking.component";
+import { Ranking } from "../pages/Ranking/Ranking.component";
 import { Loading } from "../components/Loading/Loading.component";
 import { getSummary } from "../utils/dataService.util";
 import { getCurrentDateTime } from "../utils/dateTime.util";

@@ -6,7 +6,7 @@ import "./Loading.styles.css";
 export const Loading = () => {
   return (
     <div className="loading">
-      <CircularProgress className="loading-spinner" />
+      <CircularProgress className="loading-spinner" color="primary" />
       <div className="loading-message">
         Wait while we load the best results for you
       </div>

@@ -66,6 +66,7 @@ const abbreviateNumber = (n) => {
 const useStyles = makeStyles({
   root: {
     width: "100%",
+    marginTop: 30
   },
 });
 

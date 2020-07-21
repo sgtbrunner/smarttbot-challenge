@@ -1,7 +1,18 @@
-h1 {
-    text-align: center;
-}
-
 .ranking-container {
     padding: 0 5% 50px 5%;
+}
+
+.ranking-title {
+    padding-top: 55px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    color: #1BA39C;
+}
+
+.help-box {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
 }

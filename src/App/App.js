@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
 
 import { Header } from "../components/Header/Header.component";
 import { Ranking } from "../pages/Ranking/Ranking.component";
-import { Loading } from "../components/Loading/Loading.component";
-import { getSummary } from "../utils/dataService.util";
+import { PairInfo } from "../pages/PairInfo/PairInfo.Component";
+import { getSummary } from "../services/data.service";
 import { getCurrentDateTime } from "../utils/dateTime.util";
 import "./App.css";
 
@@ -12,8 +13,8 @@ class App extends Component {
     super();
     this.state = {
       pairs: [],
-      searchfield: '',
-      lastUpdate: '',
+      searchfield: "",
+      lastUpdate: "",
     };
   }
 
@@ -23,7 +24,10 @@ class App extends Component {
   }
 
   async loadSummary() {
-    this.setState({ pairs: await getSummary(), lastUpdate: getCurrentDateTime() });
+    this.setState({
+      pairs: await getSummary(),
+      lastUpdate: getCurrentDateTime(),
+    });
   }
 
   onSearchChange = (event) => {
@@ -32,25 +36,37 @@ class App extends Component {
 
   render() {
     const filteredData = this.state.pairs.filter((pair) => {
-        return ( pair.pairCode.toLowerCase().includes(this.state.searchfield.toLowerCase()) 
-          || pair.currencies.toLowerCase().includes(this.state.searchfield.toLowerCase()));
-      }
-    );
+      return ( pair.pairCode.toLowerCase().includes(this.state.searchfield.toLowerCase()) 
+            || pair.currencies.toLowerCase().includes(this.state.searchfield.toLowerCase())
+      );
+    });
 
     return (
       <div>
         <Header />
-        { !this.state.pairs.length ?
-            <Loading />
-          :
-            <Ranking 
-              rows={filteredData} 
-              updatedAt={this.state.lastUpdate} 
-              onSearchChange={this.onSearchChange} 
-            />
-        }
+        <Switch>
+          <Route
+            exact path="/"
+            render={(props) => (
+              <Ranking
+                {...props}
+                rows={filteredData}
+                updatedAt={this.state.lastUpdate}
+                onSearchChange={this.onSearchChange}
+              />
+            )}
+          />
+          <Route 
+            path="/pair/:pairId" 
+            render={(props) => (
+              <PairInfo 
+                {...props}
+              />
+            )} 
+          />
+        </Switch>
       </div>
-    )
+    );
   }
 }
 

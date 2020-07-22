@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import { Header } from "./components/Header/Header.component";
 import { Ranking } from "./pages/Ranking/Ranking.component";
 import { PairInfo } from "./pages/PairInfo/PairInfo.Component";
-import { getSummary } from "./services/data.service";
+import { getSummary } from "./utils/dataHandle.util";
 import { getCurrentDateTime } from "./utils/dateTime.util";
 
 class App extends Component {

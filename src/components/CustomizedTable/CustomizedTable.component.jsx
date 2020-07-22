@@ -143,11 +143,12 @@ export const CustomizedTable = (props) => {
                         <TableCell 
                           key={column.id} 
                           align={column.align}
-                          onClick={() => navigateToPairInfo(column.id, row.id)} 
                           className={setCellStyles(column.id, value)}>
-                          <div className={setLinkStyle(column.id)}>
-                            {column.format ? column.format(value) : value}
-                          </div>
+                            <div 
+                              className={setLinkStyle(column.id)}
+                              onClick={() => navigateToPairInfo(column.id, row.id)}>
+                                {column.format ? column.format(value) : value}
+                            </div>
                         </TableCell>
                       );
                     })}

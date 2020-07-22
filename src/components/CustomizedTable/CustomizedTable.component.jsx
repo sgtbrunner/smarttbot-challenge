@@ -9,6 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
+import { useHistory } from "react-router-dom";
 
 import "./CustomizedTable.styles.css";
 
@@ -69,9 +70,13 @@ export const CustomizedTable = (props) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const setStyles = (id, value) => {
+  const setCellStyles = (id, value) => {
     if(id === "rank") return "bold-rank";
     if(id === "percentChange") return value > 0 ? "positive" : "negative";
+  }
+
+  const setLinkStyle = (id) => {
+    if(id === "pairCode") return "clickable-link";
   }
 
   const handleChangePage = (event, newPage) => {
@@ -84,6 +89,11 @@ export const CustomizedTable = (props) => {
   };
 
   const createSortHandler = () => {};
+
+  const history = useHistory();
+  const navigateToPairInfo = (columnId, rowId) => {
+    if(columnId==="pairCode") { history.push("/pair/" + rowId); }
+  }
 
   return (
     <Paper className={classes.root}>
@@ -132,9 +142,12 @@ export const CustomizedTable = (props) => {
                       return (
                         <TableCell 
                           key={column.id} 
-                          align={column.align} 
-                          className={setStyles(column.id, value)}>
-                          {column.format ? column.format(value) : value}
+                          align={column.align}
+                          onClick={() => navigateToPairInfo(column.id, row.id)} 
+                          className={setCellStyles(column.id, value)}>
+                          <div className={setLinkStyle(column.id)}>
+                            {column.format ? column.format(value) : value}
+                          </div>
                         </TableCell>
                       );
                     })}

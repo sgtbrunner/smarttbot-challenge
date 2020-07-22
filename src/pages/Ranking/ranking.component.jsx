@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import { Loading } from "../../components/Loading/Loading.component";
 import { SearchFilter } from "../../components/SearchFilter/SearchFilter.component";
@@ -25,7 +24,6 @@ export const Ranking = (props) => {
             </div>
             <CustomizedTable rows={rows} />
           </div>
-          <Link to="/pair/5">Click me!</Link>
         </div>
       )}
     </div>

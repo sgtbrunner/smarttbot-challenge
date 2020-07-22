@@ -1,0 +1,28 @@
+.pair-info-container {
+    padding: 40px 10% 100px 10%;
+    display: grid;
+}
+
+.pair-info-container a {
+    padding-right: 5px;
+    color: #7A7A7A;
+    font-size: 16px;
+}
+
+.title-container {
+    padding-top: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.currencies {
+    font-weight: bold;
+    font-size: 30px;
+    color: #1BA39C;
+}
+
+.pair-code {
+    font-size: 20px;
+    color: #7A7A7A;
+}

@@ -5,3 +5,13 @@
 .negative {
     color: red !important;
 }
+
+.bold-rank {
+    font-weight: 600 !important;
+}
+
+.clickable-link {
+    color: #1BA39C;
+    cursor: pointer;
+    text-decoration: underline;
+}

@@ -1,4 +1,4 @@
 export const getCurrentDateTime = () => {
-    const today = new Date();
-    return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTimeNow = new Date();
+    return `${dateTimeNow.toLocaleDateString("pt-BR")} at ${dateTimeNow.toLocaleTimeString("pt-BR")}`;
 };

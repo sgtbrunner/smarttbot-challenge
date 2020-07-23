@@ -11,6 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import { useHistory } from "react-router-dom";
 
+import { abbreviateNumber, numericValueFormatter, percentageFormatter } from "../../utils/numberFormatter.util";
 import "./CustomizedTable.styles.css";
 
 const columns = [
@@ -35,28 +36,14 @@ const columns = [
   {
     id: "percentChange",
     label: "Change %",
-    format: (value) => (Number(value) * 100).toFixed(2).replace(".", ",") + "%"
+    format: (value) => percentageFormatter(value)
   },
   {
     id: "totalVolume",
     label: "Volume",
-    format: (value) => abbreviateNumber(Number(value)).replace(".", ","),
+    format: (value) => abbreviateNumber(value),
   }
 ];
-
-const numericValueFormatter = value => {
-  return Number(value) > 1
-  ? Number(value).toLocaleString("pt-BR")
-  : Number(value).toFixed(6).replace(".", ",")
-}
-
-const abbreviateNumber = (n) => {
-  if (n < 1e3) return n.toLocaleString("pt-BR");
-  if (n >= 1e3 && n < 1e6) return ((n / 1e3).toFixed(1) + "K");
-  if (n >= 1e6 && n < 1e9) return ((n / 1e6).toFixed(1) + "M");
-  if (n >= 1e9 && n < 1e12) return ((n / 1e9).toFixed(1) + "B");
-  if (n >= 1e12) return ((n / 1e12).toFixed(1) + "T");
-};
 
 const useStyles = makeStyles({
   root: {

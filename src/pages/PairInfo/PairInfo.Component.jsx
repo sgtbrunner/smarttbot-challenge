@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { LiveUpdate } from "../../components/LiveUpdate/LiveUpdate.component";
+import { PairInfoCard } from "../../components/PairInfoCard/PairInfoCard.component";
 import { getComplementaryPairInfo } from "../../utils/dataHandle.util";
 import "./PairInfo.styles.css";
 
@@ -24,7 +25,7 @@ export const PairInfo = props => {
             }
         }
     
-        getData(pair);
+        // getData(pair);
     
         return (
             <div className="pair-info-container">
@@ -43,6 +44,7 @@ export const PairInfo = props => {
                     </div>
                     <LiveUpdate updatedAt={updatedAt} />
                 </div>
+                <PairInfoCard pair={pair} />
             </div>
         )
     }

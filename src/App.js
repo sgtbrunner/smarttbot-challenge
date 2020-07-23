@@ -1,32 +1,26 @@
 import React, { Component } from "react";
+import { connect} from "react-redux"
+import { Provider } from 'react-redux';
 import { Switch, Route } from "react-router-dom";
 
 import { Header } from "./components/Header/Header.component";
 import { Ranking } from "./pages/Ranking/Ranking.page";
 import { PairInfo } from "./pages/PairInfo/PairInfo.page";
-import { getSummary } from "./utils/dataHandle.util";
-import { getCurrentDateTime } from "./utils/dateTime.util";
+import { fetchSummary } from "./actions/dataActions"
+import store from "./store";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       pairs: [],
-      searchfield: "",
       lastUpdate: "",
+      searchfield: "",
     };
   }
 
   componentDidMount() {
-    this.loadSummary();
-    setInterval(() => { this.loadSummary() }, 60000);
-  }
-
-  async loadSummary() {
-    this.setState({
-      pairs: await getSummary(),
-      lastUpdate: getCurrentDateTime(),
-    });
+    this.props.fetchSummary();
   }
 
   onSearchChange = (event) => {
@@ -34,13 +28,13 @@ class App extends Component {
   };
 
   onPairClick = (pairId) => {
-    return this.state.pairs.filter((pair) => {
+    return this.props.pairs.filter((pair) => {
       return pair.id.toString() === pairId.toString()} 
     )[0];
   };
 
   render() {
-    const filteredData = this.state.pairs.filter((pair) => {
+    const filteredData = this.props.pairs.filter((pair) => {
       return (
         pair.pairCode.toLowerCase().includes(this.state.searchfield.toLowerCase()) ||
         pair.currencies.toLowerCase().includes(this.state.searchfield.toLowerCase())
@@ -48,34 +42,38 @@ class App extends Component {
     });
 
     return (
-      <div className="app">
-        <Header />
-        <Switch>
-          <Route
-            exact path="/"
-            render={(props) => (
-              <Ranking
-                {...props}
-                rows={filteredData}
-                updatedAt={this.state.lastUpdate}
-                onSearchChange={this.onSearchChange}
-              />
-            )}
-          />
-          <Route
-            path="/pair/:pairId"
-            render={(props) => (
-              <PairInfo
-                {...props}
-                pair={this.onPairClick(props.match.params.pairId)}
-                updatedAt={this.state.lastUpdate}
-              />
-            )}
-          />
-        </Switch>
-      </div>
+      <Provider store={store}>
+        <div className="app">
+          <Header />
+          <Switch>
+            <Route
+              exact path="/"
+              render={(props) => (
+                <Ranking
+                  {...props}
+                  rows={filteredData}
+                  updatedAt={this.props.lastUpdate}
+                  onSearchChange={this.onSearchChange}
+                />
+              )}
+            />
+            <Route
+              path="/pair/:pairId"
+              render={(props) => (
+                <PairInfo
+                  {...props}
+                  pair={this.onPairClick(props.match.params.pairId)}
+                  updatedAt={this.props.lastUpdate}
+                />
+              )}
+            />
+          </Switch>
+        </div>
+      </Provider>
     );
   }
 }
 
-export default App;
+const mapStatetoProps = state=> ({pairs: state.pairs, lastUpdate: state.lastUpdate})
+
+export default connect(mapStatetoProps, {fetchSummary}) (App);

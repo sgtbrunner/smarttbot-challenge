@@ -4,11 +4,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { LiveUpdate } from "../../components/LiveUpdate/LiveUpdate.component";
 import { PairInfoCard } from "../../components/PairInfoCard/PairInfoCard.component";
+import { Chart } from "../../components/Chart/Chart.component";
 import { getComplementaryPairInfo } from "../../utils/dataHandle.util";
+import { getCurrentDateTimeSubtractedNDays } from "../../utils/dateTime.util";
 import "./PairInfo.styles.css";
 
 export const PairInfo = props => {
-    console.log(props);
     const { history, location, match, pair, updatedAt } = props;
 
     if(!(pair && updatedAt)) {
@@ -25,7 +26,7 @@ export const PairInfo = props => {
             }
         }
     
-        // getData(pair);
+        getData(pair);
     
         return (
             <div className="pair-info-container">
@@ -45,6 +46,9 @@ export const PairInfo = props => {
                     <LiveUpdate updatedAt={updatedAt} />
                 </div>
                 <PairInfoCard pair={pair} />
+                <div className="center chart">
+                    <button onClick={() => getCurrentDateTimeSubtractedNDays(1)}>TESTE</button>
+                </div>
             </div>
         )
     }

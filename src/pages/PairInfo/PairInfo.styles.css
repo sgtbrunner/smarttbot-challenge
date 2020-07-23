@@ -1,5 +1,5 @@
 .pair-info-container {
-    padding: 40px 10% 100px 10%;
+    margin: 40px 5% 100px 5%;
     display: grid;
 }
 
@@ -25,4 +25,8 @@
 .pair-code {
     font-size: 20px;
     color: #7A7A7A;
+}
+
+.chart {
+    margin: 50px 5% 50px 5%;
 }

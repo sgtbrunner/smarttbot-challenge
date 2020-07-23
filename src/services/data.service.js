@@ -18,6 +18,13 @@ export const returnTradeHistory = async (pair) => {
   .then((data) => { return data });
 };
 
+export const returnChartData = async (pair, startTime, endTime) => {
+  return await fetch(URL_CONSTANTS.BASE_URL + URL_CONSTANTS.RETURN_CHART_DATA + 
+    pair + "&start=" + startTime + "&end=" + endTime + "&period=14400")
+  .then((response) => response.json())
+  .then((data) => { return data });
+}
+
 export const returnCurrencies = async () => {
   return await fetch(URL_CONSTANTS.BASE_URL + URL_CONSTANTS.RETURN_CURRENCIES)
   .then((response) => response.json())

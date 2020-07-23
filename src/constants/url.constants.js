@@ -4,5 +4,6 @@ export const URL_CONSTANTS = {
     RETURN_24H_VOLUME: "return24hVolume",
     RETURN_ORDER_BOOK: "returnOrderBook&currencyPair=",
     RETURN_TRADE_HISTORY: "returnTradeHistory&currencyPair=",
+    RETURN_CHART_DATA: "returnChartData&currencyPair=",
     RETURN_CURRENCIES : "returnCurrencies",
 }

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import { Header } from "./components/Header/Header.component";
-import { Ranking } from "./pages/Ranking/Ranking.component";
-import { PairInfo } from "./pages/PairInfo/PairInfo.Component";
+import { Ranking } from "./pages/Ranking/Ranking.page";
+import { PairInfo } from "./pages/PairInfo/PairInfo.page";
 import { getSummary } from "./utils/dataHandle.util";
 import { getCurrentDateTime } from "./utils/dateTime.util";
 
@@ -48,7 +48,7 @@ class App extends Component {
     });
 
     return (
-      <div>
+      <div className="app">
         <Header />
         <Switch>
           <Route

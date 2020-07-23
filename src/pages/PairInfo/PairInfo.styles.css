@@ -1,0 +1,44 @@
+.pair-info-container {
+    margin: 40px 5% 100px 5%;
+    display: grid;
+}
+
+.pair-info-container a {
+    padding-right: 5px;
+    color: #7A7A7A;
+    font-size: 16px;
+}
+
+.title-container {
+    padding-top: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.currencies {
+    font-weight: bold;
+    font-size: 30px;
+    color: #1BA39C;
+}
+
+.pair-code {
+    font-size: 20px;
+    color: #7A7A7A;
+}
+
+.chart-group {
+    margin-top: 50px;
+}
+
+.chart-group-title {
+    color: #1BA39C;
+}
+
+.charts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+

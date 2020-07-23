@@ -8,9 +8,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
 import { useHistory } from "react-router-dom";
 
+import { abbreviateNumber, numericValueFormatter, percentageFormatter } from "../../utils/numberFormatter.util";
 import "./CustomizedTable.styles.css";
 
 const columns = [
@@ -35,28 +35,14 @@ const columns = [
   {
     id: "percentChange",
     label: "Change %",
-    format: (value) => (Number(value) * 100).toFixed(2).replace(".", ",") + "%"
+    format: (value) => percentageFormatter(value)
   },
   {
     id: "totalVolume",
     label: "Volume",
-    format: (value) => abbreviateNumber(Number(value)).replace(".", ","),
+    format: (value) => abbreviateNumber(value),
   }
 ];
-
-const numericValueFormatter = value => {
-  return Number(value) > 1
-  ? Number(value).toLocaleString("pt-BR")
-  : Number(value).toFixed(6).replace(".", ",")
-}
-
-const abbreviateNumber = (n) => {
-  if (n < 1e3) return n.toLocaleString("pt-BR");
-  if (n >= 1e3 && n < 1e6) return ((n / 1e3).toFixed(1) + "K");
-  if (n >= 1e6 && n < 1e9) return ((n / 1e6).toFixed(1) + "M");
-  if (n >= 1e9 && n < 1e12) return ((n / 1e9).toFixed(1) + "B");
-  if (n >= 1e12) return ((n / 1e12).toFixed(1) + "T");
-};
 
 const useStyles = makeStyles({
   root: {
@@ -88,8 +74,6 @@ export const CustomizedTable = (props) => {
     setPage(0);
   };
 
-  const createSortHandler = () => {};
-
   const history = useHistory();
   const navigateToPairInfo = (columnId, rowId) => {
     if(columnId==="pairCode") { history.push("/pair/" + rowId); }
@@ -105,24 +89,7 @@ export const CustomizedTable = (props) => {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth, fontWeight: "bold" }}
-                >
-                  <TableSortLabel
-                    active={props.orderBy === column.id}
-                    direction={
-                      props.orderBy === column.id ? props.order : "asc"
-                    }
-                    onClick={createSortHandler(column.id)}
-                  >
-                    {column.label}
-                    {props.orderBy === column.id ? (
-                      <span className={classes.visuallyHidden}>
-                        {props.order === "desc"
-                          ? "sorted descending"
-                          : "sorted ascending"}
-                      </span>
-                    ) : null}
-                  </TableSortLabel>
+                  style={{ minWidth: column.minWidth, fontWeight: "bold" }}>
                 </TableCell>
               ))}
             </TableRow>

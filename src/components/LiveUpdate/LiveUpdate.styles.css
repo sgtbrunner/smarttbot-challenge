@@ -2,6 +2,7 @@
     display: flex;
     justify-content: flex-end;
     align-content: center;
+    align-self: center;
 }
 
 .live-text {
@@ -9,6 +10,6 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
-    color: #35855C;
+    color: #1BA39C;
     padding-left: 10px;
 }

@@ -3,12 +3,12 @@
 
 Com SmarttBot Challenge você pode conferir um ranking das cotações dos pares de criptomoedas mais comuns atualizados em tempo real!
 
-![Ranking](https://github.com/sgtbrunner/smarttbot-challenge/blob/develop/assets/ranking.jpg?raw=true)
+![Ranking](https://github.com/sgtbrunner/smarttbot-challenge/blob/develop/src/assets/ranking.jpg)
 
 Na tela de Ranking é possível visualizar o ranking dos pares das criptomoedas de forma paginada, filtrar pelo nome ou código desejado. Clicando no par desejado, é possível navegar para a página com dados específicos daquele par.
 Todos os dados são atualizados à cada minuto.
 
-![PairInfo](https://github.com/sgtbrunner/smarttbot-challenge/blob/develop/assets/pairinfo.jpg?raw=true)
+![PairInfo](https://github.com/sgtbrunner/smarttbot-challenge/blob/develop/src/assets/pairinfo.jpg)
 
 Na tela de dados específicos, além dos dados apresentados no sumário, ainda é possível conferir os gráficos dos valores médios da taxa e volume nas últimas 24h.
 
@@ -42,7 +42,7 @@ No terminal:
 * **Guilherme Brunner** - *Trabalho inicial* - [sgtbrunner](https://github.com/sgtbrunner)
 
 ## Referências e agradecimentos
-* **SmarttBot"" - https://www.smarttbot.com/
+* **SmarttBot** - https://www.smarttbot.com/
 * **Poloniex API** - https://docs.poloniex.com/
 * **Material UI** - https://material-ui.com/
 * **Recharts** - https://recharts.org/en-US/

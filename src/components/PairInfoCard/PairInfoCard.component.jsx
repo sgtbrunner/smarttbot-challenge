@@ -5,7 +5,6 @@ import "./PairInfoCard.styles.css";
 
 export const PairInfoCard = (props) => {
     const { pair } = props;
-    console.log(pair);
 
     return(
         <div className="pair-info-card">

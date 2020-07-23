@@ -1,8 +1,11 @@
 import { returnTicker, 
-         returnOrderBook, 
-         returnTradeHistory, 
+        //  returnOrderBook, 
+        //  returnTradeHistory,
+         returnChartData, 
          returnCurrencies} 
 from "../services/data.service";
+
+import { convertUnixToDate } from "../utils/dateTime.util";
 
 export const getSummary = async () => {
     const [ticker, currencies] = await 
@@ -10,9 +13,10 @@ export const getSummary = async () => {
     return setSummaryData(ticker, currencies);
 };
   
-export const getComplementaryPairInfo = async pairCode => {
-    return await 
-      Promise.all([returnOrderBook(pairCode), returnTradeHistory(pairCode)])
+export const getChartData = async ( pairCode, startTime, endTime) => {
+    const chartData = await returnChartData(pairCode, startTime, endTime);
+    const dateTimeInfo = chartData.map(el => convertUnixToDate(el.date));
+    return [chartData, dateTimeInfo];
 };
 
 const setSummaryData = (ticker, currencies) => {

@@ -6,21 +6,21 @@ export const returnTicker = async () => {
     .then((data) => { return data });
 };
 
-export const returnOrderBook = async (pair) => {
-  return await fetch(URL_CONSTANTS.BASE_URL + URL_CONSTANTS.RETURN_ORDER_BOOK + pair)
-  .then((response) => response.json())
-  .then((data) => { return data });
-};
+// export const returnOrderBook = async (pair) => {
+//   return await fetch(URL_CONSTANTS.BASE_URL + URL_CONSTANTS.RETURN_ORDER_BOOK + pair)
+//   .then((response) => response.json())
+//   .then((data) => { return data });
+// };
 
-export const returnTradeHistory = async (pair) => {
-  return await fetch(URL_CONSTANTS.BASE_URL + URL_CONSTANTS.RETURN_TRADE_HISTORY + pair)
-  .then((response) => response.json())
-  .then((data) => { return data });
-};
+// export const returnTradeHistory = async (pair) => {
+//   return await fetch(URL_CONSTANTS.BASE_URL + URL_CONSTANTS.RETURN_TRADE_HISTORY + pair)
+//   .then((response) => response.json())
+//   .then((data) => { return data });
+// };
 
 export const returnChartData = async (pair, startTime, endTime) => {
   return await fetch(URL_CONSTANTS.BASE_URL + URL_CONSTANTS.RETURN_CHART_DATA + 
-    pair + "&start=" + startTime + "&end=" + endTime + "&period=14400")
+    pair + "&start=" + startTime + "&end=" + endTime + "&period=1800")
   .then((response) => response.json())
   .then((data) => { return data });
 }

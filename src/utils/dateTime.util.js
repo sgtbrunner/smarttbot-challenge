@@ -4,14 +4,13 @@ export const getCurrentDateTime = () => {
 };
 
 export const convertDateToUnix = date => {
-    return date.getTime() / 1000; 
+    return date.getTime()/1000; 
 }
 
 export const convertUnixToDate = unix => {
     return new Date(unix*1000);
 }
 
-export const getCurrentDateTimeSubtractedNDays = (n) => {
-    let dateTimeNow = new Date();
-    console.log(convertUnixToDate(dateTimeNow.setDate(dateTimeNow.getDate() - n))); 
+export const getDateTimeSubtractedByNDays = (date, n) => {
+    return ((date.setDate(date.getDate() - n))); 
 }

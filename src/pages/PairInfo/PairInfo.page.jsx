@@ -10,7 +10,7 @@ import { getChartData } from "../../utils/dataHandle.util";
 import "./PairInfo.styles.css";
 
 export const PairInfo = props => {
-    const { history, location, match, pair, updatedAt } = props;
+    const { location, pair, updatedAt } = props;
     const [data, setData] = useState([]);
 
     const getComplimentaryPairData = async pair => {

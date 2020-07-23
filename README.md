@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Smarttbot Challenge
+## Versão: 1.0
 
-## Available Scripts
+Com SmarttBot Challenge você pode conferir um ranking das cotações dos pares de criptomoedas mais comuns atualizados em tempo real!
 
-In the project directory, you can run:
+![Ranking](https://github.com/sgtbrunner/smarttbot-challenge/blob/develop/assets/ranking.jpg?raw=true)
 
-### `npm start`
+Na tela de Ranking é possível visualizar o ranking dos pares das criptomoedas de forma paginada, filtrar pelo nome ou código desejado. Clicando no par desejado, é possível navegar para a página com dados específicos daquele par.
+Todos os dados são atualizados à cada minuto.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![PairInfo](https://github.com/sgtbrunner/smarttbot-challenge/blob/develop/assets/pairinfo.jpg?raw=true)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Na tela de dados específicos, além dos dados apresentados no sumário, ainda é possível conferir os gráficos dos valores médios da taxa e volume nas últimas 24h.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Live Preview: http://sgtbrunner.github.io/smarttbot-challenge
 
-### `npm run build`
+## Pré-requisitos
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* NPM instalado
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Instalação
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+No terminal:
+1. Rodar `git clone https://github.com/sgtbrunner/smarttbot-challenge.git`
+2. Rodar `cd smarttbot-challenge`
+3. Rodar `npm install`
+4. Rodar `npm start`
 
-### `npm run eject`
+## Construído com
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* HTML
+* CSS
+* Javascript
+* React
+* Redux
+* Hooks
+* REST API
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Autor(es)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* **Guilherme Brunner** - *Trabalho inicial* - [sgtbrunner](https://github.com/sgtbrunner)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Referências e agradecimentos
+* **SmarttBot"" - https://www.smarttbot.com/
+* **Poloniex API** - https://docs.poloniex.com/
+* **Material UI** - https://material-ui.com/
+* **Recharts** - https://recharts.org/en-US/

@@ -57,10 +57,12 @@ export const PairInfo = props => {
                     <LiveUpdate updatedAt={updatedAt} />
                     </div>
                 <PairInfoCard pair={pair} />
-                <div className="center chart">
-                    <h3>Average rate and volume in the past 24h</h3>
-                    <Chart data={data} type="average" color="red"/>
-                    <Chart data={data} type="volume" color="green"/>
+                <div className="center chart-group">
+                    <h3 className="chart-group-title">Average rate and volume in the past 24h</h3>
+                    <div className="charts">
+                        <Chart data={data} type="Rate" color="purple"/>
+                        <Chart data={data} type="Volume" color="orange"/>
+                    </div>
                 </div>
             </div>
         )

@@ -8,7 +8,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
 import { useHistory } from "react-router-dom";
 
 import { abbreviateNumber, numericValueFormatter, percentageFormatter } from "../../utils/numberFormatter.util";
@@ -75,8 +74,6 @@ export const CustomizedTable = (props) => {
     setPage(0);
   };
 
-  const createSortHandler = () => {};
-
   const history = useHistory();
   const navigateToPairInfo = (columnId, rowId) => {
     if(columnId==="pairCode") { history.push("/pair/" + rowId); }
@@ -92,24 +89,7 @@ export const CustomizedTable = (props) => {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth, fontWeight: "bold" }}
-                >
-                  <TableSortLabel
-                    active={props.orderBy === column.id}
-                    direction={
-                      props.orderBy === column.id ? props.order : "asc"
-                    }
-                    onClick={createSortHandler(column.id)}
-                  >
-                    {column.label}
-                    {props.orderBy === column.id ? (
-                      <span className={classes.visuallyHidden}>
-                        {props.order === "desc"
-                          ? "sorted descending"
-                          : "sorted ascending"}
-                      </span>
-                    ) : null}
-                  </TableSortLabel>
+                  style={{ minWidth: column.minWidth, fontWeight: "bold" }}>
                 </TableCell>
               ))}
             </TableRow>

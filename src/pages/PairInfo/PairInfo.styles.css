@@ -27,6 +27,18 @@
     color: #7A7A7A;
 }
 
-.chart {
-    margin: 50px 5% 50px 5%;
+.chart-group {
+    margin-top: 50px;
 }
+
+.chart-group-title {
+    color: #1BA39C;
+}
+
+.charts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+

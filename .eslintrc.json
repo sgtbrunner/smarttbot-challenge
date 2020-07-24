@@ -18,6 +18,7 @@
         "react"
     ],
     "rules": {
-        "no-undef": ["off", "always"]
+        "no-undef": ["off", "always"],
+        "react/prop-types": ["warn"]
     }
 }

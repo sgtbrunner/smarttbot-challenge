@@ -19,48 +19,48 @@ const columns = [
   {
     id: "last",
     label: "Last",
-    format: (value) => numericValueFormatter(value)
+    format: (value) => numericValueFormatter(value),
   },
   {
     id: "high24hr",
     label: "High",
-    format: (value) => numericValueFormatter(value)
+    format: (value) => numericValueFormatter(value),
   },
   {
     id: "low24hr",
     label: "Low",
-    format: (value) => numericValueFormatter(value)
+    format: (value) => numericValueFormatter(value),
   },
   {
     id: "percentChange",
     label: "Change %",
-    format: (value) => (Number(value) * 100).toFixed(2).replace(".", ",") + "%"
+    format: (value) => (Number(value) * 100).toFixed(2).replace(".", ",") + "%",
   },
   {
     id: "totalVolume",
     label: "Volume",
     format: (value) => abbreviateNumber(Number(value)).replace(".", ","),
-  }
+  },
 ];
 
-const numericValueFormatter = value => {
+const numericValueFormatter = (value) => {
   return Number(value) > 1
-  ? Number(value).toLocaleString("pt-BR")
-  : Number(value).toFixed(6).replace(".", ",")
-}
+    ? Number(value).toLocaleString("pt-BR")
+    : Number(value).toFixed(6).replace(".", ",");
+};
 
 const abbreviateNumber = (n) => {
   if (n < 1e3) return n.toLocaleString("pt-BR");
-  if (n >= 1e3 && n < 1e6) return ((n / 1e3).toFixed(1) + "K");
-  if (n >= 1e6 && n < 1e9) return ((n / 1e6).toFixed(1) + "M");
-  if (n >= 1e9 && n < 1e12) return ((n / 1e9).toFixed(1) + "B");
-  if (n >= 1e12) return ((n / 1e12).toFixed(1) + "T");
+  if (n >= 1e3 && n < 1e6) return (n / 1e3).toFixed(1) + "K";
+  if (n >= 1e6 && n < 1e9) return (n / 1e6).toFixed(1) + "M";
+  if (n >= 1e9 && n < 1e12) return (n / 1e9).toFixed(1) + "B";
+  if (n >= 1e12) return (n / 1e12).toFixed(1) + "T";
 };
 
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    marginTop: 30
+    marginTop: 30,
   },
 });
 
@@ -70,13 +70,13 @@ export const CustomizedTable = (props) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const setCellStyles = (id, value) => {
-    if(id === "rank") return "bold-rank";
-    if(id === "percentChange") return value > 0 ? "positive" : "negative";
-  }
+    if (id === "rank") return "bold-rank";
+    if (id === "percentChange") return value > 0 ? "positive" : "negative";
+  };
 
   const setLinkStyle = (id) => {
-    if(id === "pairCode") return "clickable-link";
-  }
+    if (id === "pairCode") return "clickable-link";
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -87,11 +87,12 @@ export const CustomizedTable = (props) => {
     setPage(0);
   };
 
-
   const history = useHistory();
   const navigateToPairInfo = (columnId, rowId) => {
-    if(columnId==="pairCode") { history.push("/pair/" + rowId); }
-  }
+    if (columnId === "pairCode") {
+      history.push("/pair/" + rowId);
+    }
+  };
 
   return (
     <Paper className={classes.root}>
@@ -103,7 +104,8 @@ export const CustomizedTable = (props) => {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth, fontWeight: "bold" }}>
+                  style={{ minWidth: column.minWidth, fontWeight: "bold" }}
+                >
                   {column.label}
                 </TableCell>
               ))}
@@ -114,23 +116,32 @@ export const CustomizedTable = (props) => {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
                 return (
-                  <TableRow 
+                  <TableRow
                     key={row.id}
-                    tabIndex={-1} 
+                    tabIndex={-1}
                     role="checkbox"
-                    style ={ index % 2? { background : "#EEEEEE" }:{ background : "#FFFFFF" }}>
+                    style={
+                      index % 2
+                        ? { background: "#EEEEEE" }
+                        : { background: "#FFFFFF" }
+                    }
+                  >
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell 
-                          key={column.id} 
+                        <TableCell
+                          key={column.id}
                           align={column.align}
-                          className={setCellStyles(column.id, value)}>
-                            <div 
-                              className={setLinkStyle(column.id)}
-                              onClick={() => navigateToPairInfo(column.id, row.id)}>
-                                {column.format ? column.format(value) : value}
-                            </div>
+                          className={setCellStyles(column.id, value)}
+                        >
+                          <div
+                            className={setLinkStyle(column.id)}
+                            onClick={() =>
+                              navigateToPairInfo(column.id, row.id)
+                            }
+                          >
+                            {column.format ? column.format(value) : value}
+                          </div>
                         </TableCell>
                       );
                     })}

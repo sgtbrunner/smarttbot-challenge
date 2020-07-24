@@ -1,7 +1,7 @@
 import { returnTicker, 
          returnChartData, 
          returnCurrencies} 
-from "../services/data.service";
+from "./data.service";
 
 import { convertUnixToDate } from "../utils/dateTime.util";
 

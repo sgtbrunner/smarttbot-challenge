@@ -1,2 +1,0 @@
-export const GET_SUMMARY = "GET_SUMMARY";
-export const GET_CURRENT_DATE_TIME = "GET_CURRENT_DATE_TIME";

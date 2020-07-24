@@ -8,7 +8,7 @@ import { convertUnixToDate } from "../utils/dateTime.util";
 export const getSummary = async () => {
     const [ticker, currencies] = await 
       Promise.all([returnTicker(), returnCurrencies()])
-    return setSummaryData(ticker, currencies);
+      return setSummaryData(ticker, currencies);
 };
   
 export const getChartData = async ( pairCode, startTime, endTime) => {
@@ -30,7 +30,7 @@ const setChartData = (chartData, dateTimeInfo) => {
       "volume": chartData[i].volume
     };
     graphData.push(dataObject);
-  };
+  }
   return graphData;
 }
   

@@ -5,4 +5,4 @@ export const getCurrentDateTime = () => {
 
 export const convertUnixToDate = unix => {
     return new Date(unix*1000);
-}
+};

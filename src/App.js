@@ -1,81 +1,90 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+import { connect} from "react-redux"
 import { Switch, Route } from "react-router-dom";
 
 import { Header } from "./components/Header/Header.component";
 import { Ranking } from "./pages/Ranking/Ranking.page";
 import { PairInfo } from "./pages/PairInfo/PairInfo.page";
+
 import { getSummary } from "./utils/dataHandle.util";
 import { getCurrentDateTime } from "./utils/dateTime.util";
+import { setLoadSumary, setUpdated } from "./actions/dataActions";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      pairs: [],
-      searchfield: "",
-      lastUpdate: "",
-    };
-  }
 
-  componentDidMount() {
-    this.loadSummary();
-    setInterval(() => { this.loadSummary() }, 60000);
-  }
+const App = ( { pairs, lastUpdate, setPairs, setUpdated} ) => {
+  const [searchField, setSearchField] = useState("");
+ 
 
-  async loadSummary() {
-    this.setState({
-      pairs: await getSummary(),
-      lastUpdate: getCurrentDateTime(),
-    });
-  }
+    useEffect(() => {
+       async function fetchData() {
+        const resultSumary = await getSummary()
+        const resultUpdated = getCurrentDateTime();
+        
+        
+        setPairs(resultSumary);
+        setUpdated(resultUpdated);
+      }
+      fetchData();
+      setInterval(() => { fetchData() }, 60000)
+    }, []);
 
-  onSearchChange = (event) => {
-    this.setState({ searchfield: event.target.value });
+  const onSearchChange = event => {
+    setSearchField(event.target.value);
   };
 
-  onPairClick = (pairId) => {
-    return this.state.pairs.filter((pair) => {
+  const onPairClick = (pairId) => {
+    return pairs.filter((pair) => {
       return pair.id.toString() === pairId.toString()} 
     )[0];
   };
 
-  render() {
-    const filteredData = this.state.pairs.filter((pair) => {
+  
+    const filteredData = pairs.filter((pair) => {
       return (
-        pair.pairCode.toLowerCase().includes(this.state.searchfield.toLowerCase()) ||
-        pair.currencies.toLowerCase().includes(this.state.searchfield.toLowerCase())
+        pair.pairCode.toLowerCase().includes(searchField.toLowerCase()) ||
+        pair.currencies.toLowerCase().includes(searchField.toLowerCase())
       );
     });
 
     return (
-      <div className="app">
-        <Header />
-        <Switch>
-          <Route
-            exact path="/"
-            render={(props) => (
-              <Ranking
-                {...props}
-                rows={filteredData}
-                updatedAt={this.state.lastUpdate}
-                onSearchChange={this.onSearchChange}
-              />
-            )}
-          />
-          <Route
-            path="/pair/:pairId"
-            render={(props) => (
-              <PairInfo
-                {...props}
-                pair={this.onPairClick(props.match.params.pairId)}
-                updatedAt={this.state.lastUpdate}
-              />
-            )}
-          />
-        </Switch>
-      </div>
+        <div className="app">
+          <Header />
+          <Switch>
+            <Route
+              exact path="/"
+              render={(props) => (
+                <Ranking
+                  {...props}
+                  rows={filteredData}
+                  updatedAt={lastUpdate}
+                  onSearchChange={onSearchChange}
+                />
+              )}
+            />
+            <Route
+              path="/pair/:pairId"
+              render={(props) => (
+                <PairInfo
+                  {...props}
+                  pair={onPairClick(props.match.params.pairId)}
+                  updatedAt={lastUpdate}
+                />
+              )}
+            />
+          </Switch>
+        </div>
     );
   }
-}
 
-export default App;
+const mapStateToProps = (state) => ({
+    pairs: state.dataReducer.pairs, 
+    lastUpdate: state.dataReducer.lastUpdate
+  })
+
+  const mapDispatchToProps = (dispatch) => ({
+    setPairs: (pairs) => dispatch(setLoadSumary(pairs)),
+    setUpdated: (date) => dispatch(setUpdated(date)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+

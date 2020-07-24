@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/smarttbot-challenge/precache-manifest.310fea6ceef25aefc27f1b86b48d1fe9.js"
+  "/smarttbot-challenge/precache-manifest.a0439fcb5c1cd3033b42bb3ad47c5beb.js"
 );
 
 self.addEventListener('message', (event) => {

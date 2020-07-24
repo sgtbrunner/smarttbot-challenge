@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/smarttbot-challenge/static/css/main.6ec9134e.chunk.css",
+    "main.js": "/smarttbot-challenge/static/js/main.b7807d53.chunk.js",
+    "main.js.map": "/smarttbot-challenge/static/js/main.b7807d53.chunk.js.map",
+    "runtime-main.js": "/smarttbot-challenge/static/js/runtime-main.8e6b841f.js",
+    "runtime-main.js.map": "/smarttbot-challenge/static/js/runtime-main.8e6b841f.js.map",
+    "static/js/2.48f7e2d9.chunk.js": "/smarttbot-challenge/static/js/2.48f7e2d9.chunk.js",
+    "static/js/2.48f7e2d9.chunk.js.map": "/smarttbot-challenge/static/js/2.48f7e2d9.chunk.js.map",
+    "index.html": "/smarttbot-challenge/index.html",
+    "precache-manifest.5a658d0c4ea24393a3a5b384cbbed586.js": "/smarttbot-challenge/precache-manifest.5a658d0c4ea24393a3a5b384cbbed586.js",
+    "service-worker.js": "/smarttbot-challenge/service-worker.js",
+    "static/css/main.6ec9134e.chunk.css.map": "/smarttbot-challenge/static/css/main.6ec9134e.chunk.css.map",
+    "static/js/2.48f7e2d9.chunk.js.LICENSE.txt": "/smarttbot-challenge/static/js/2.48f7e2d9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8e6b841f.js",
+    "static/js/2.48f7e2d9.chunk.js",
+    "static/css/main.6ec9134e.chunk.css",
+    "static/js/main.b7807d53.chunk.js"
+  ]
+}

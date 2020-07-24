@@ -2,6 +2,7 @@
   "name": "smarttbot-challenge",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://sgtbrunner.github.io/smarttbot-challenge",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -21,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

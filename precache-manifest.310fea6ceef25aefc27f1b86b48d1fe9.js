@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "25ab13ae08b602189b4de3030903bad4",
+    "revision": "1bde1c0d1adc0171c32858e6b0c2e870",
     "url": "/smarttbot-challenge/index.html"
   },
   {
-    "revision": "9553f5392c437737e391",
-    "url": "/smarttbot-challenge/static/css/main.6ec9134e.chunk.css"
+    "revision": "d115f5c0e181d2571180",
+    "url": "/smarttbot-challenge/static/css/main.f515fd35.chunk.css"
   },
   {
     "revision": "fbc6e92348504df1c0e7",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/smarttbot-challenge/static/js/2.48f7e2d9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9553f5392c437737e391",
-    "url": "/smarttbot-challenge/static/js/main.b7807d53.chunk.js"
+    "revision": "d115f5c0e181d2571180",
+    "url": "/smarttbot-challenge/static/js/main.b1945db9.chunk.js"
   },
   {
     "revision": "4acc2fcc6dcd91e1a911",
